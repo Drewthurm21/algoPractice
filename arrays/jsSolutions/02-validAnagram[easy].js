@@ -34,7 +34,7 @@ const validAnagram = (s, t) => {
 }
 
 //array buckets solution
-const validAnagram2 = (s, t) => {
+const validAnagrams = (s, t) => {
   let lettersArr = new Array(26).fill(0)
 
   for (let i = 0; i < s.length; i++) {
@@ -51,4 +51,4 @@ const validAnagram2 = (s, t) => {
   return true
 }
 
-console.log(validAnagram2("nagaram", "anagram"))
+console.log(validAnagram("nagaram", "anagram"))

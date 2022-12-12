@@ -19,5 +19,29 @@ s and t consist of lowercase English letters.
 Follow up: What if the inputs contain Unicode characters ? How would you adapt your solution to such a case?
 '''
 
-def valid_anagram(string):
-  pass
+
+def valid_anagram(s, t):
+    c = {}
+
+    for char in s:
+        if char in c.keys():
+            c[char] = c[char] + 1
+        else:
+            c[char] = 1
+
+    for char in t:
+        if char in c.keys():
+            if c[char] == 0:
+                return False
+            c[char] = c[char] - 1
+        else:
+            return False
+
+    return True
+
+
+def valid_anagrams(s, t):
+    pass
+
+
+print(valid_anagram('anagram', 'nagaram'))
