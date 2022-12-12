@@ -20,10 +20,10 @@ Constraints:
 
 const containsDuplicate = (nums) => {
   if (nums.length < 2) return false
-  let seenNumbers = {}
+  let seenNumbers = new Set()
   for (let num of nums) {
-    if (seenNumbers[num]) return true
-    seenNumbers[num] = seenNumbers[num] + 1 || 1
+    if (seenNumbers.has(num)) return true
+    seenNumbers.add(num)
   }
 
   return false
