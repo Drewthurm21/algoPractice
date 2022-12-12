@@ -21,14 +21,7 @@ Follow up: What if the inputs contain Unicode characters ? How would you adapt y
 
 
 def valid_anagram(s, t):
-    c = {}
-
-    for char in s:
-        if char in c.keys():
-            c[char] = c[char] + 1
-        else:
-            c[char] = 1
-
+    c = {letter: s.count(letter) for letter in s}
     for char in t:
         if char in c.keys():
             if c[char] == 0:
@@ -37,11 +30,23 @@ def valid_anagram(s, t):
         else:
             return False
 
-    return True
+    return sum(c.values()) == 0
 
 
 def valid_anagrams(s, t):
-    pass
+    letters = [0 for i in range(26)]
+
+    for char in s:
+        i = ord(char) - 97
+        letters[i] = letters[i] + 1
+
+    for char in t:
+        i = ord(char) - 97
+        if letters[i] == 0:
+            return False
+        letters[i] = letters[i] - 1
+
+    return True
 
 
-print(valid_anagram('anagram', 'nagaram'))
+print(valid_anagrams('anagram', 'nagaram'))
