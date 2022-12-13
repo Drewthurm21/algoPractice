@@ -19,24 +19,30 @@ s and t consist of lowercase English letters.
 Follow up: What if the inputs contain Unicode characters ? How would you adapt your solution to such a case?
 '''
 
+# dictionary counter
+
 
 def valid_anagram(s, t):
     if len(s) != len(t):
         return False
+
     c = {letter: s.count(letter) for letter in s}
-    for char in t:
-        if char in c.keys():
-            if char not in c or c[char] == 0:
+    keys = c.keys()
+
+    for letter in t:
+        if letter in keys:
+            if c[letter] == 0:
                 return False
             else:
-                c[char] = c[char] - 1
+                c[letter] = c[letter] - 1
 
     return sum(c.values()) == 0
 
 
-print((valid_anagram("nagaram", "anagram")))
+# print((valid_anagram("nagaram", "anagram")))
 
 
+# array buckets solution
 def valid_anagrams(s, t):
     if len(s) != len(t):
         return False
@@ -58,12 +64,13 @@ def valid_anagrams(s, t):
 # print((valid_anagrams("nagaram", "anagram")))
 
 
+# unicode solution
 def valid_anagram_unicode(s, t):
     if len(s) != len(t):
         return False
     letters = [0 for i in range(26)]
-    s = [int(letter) for letter in s.split(',')]
-    t = [int(letter) for letter in t.split(',')]
+    s = [int(num) for num in s.split(',')]
+    t = [int(num) for num in t.split(',')]
 
     for char in s:
         i = char - 97
@@ -78,4 +85,15 @@ def valid_anagram_unicode(s, t):
     return sum(letters) == 0
 
 
-print(valid_anagram_unicode('110,97,103,97,114,97,109', '97,110,97,103,97,114,109'))
+# print(valid_anagram_unicode('110,97,103,97,114,97,109', '97,110,97,103,97,114,109'))
+
+
+def anagram_comprehension(s, t):
+    if len(s) != len(t):
+        return False
+    s = sorted([ord(letter) for letter in s])
+    t = sorted([ord(letter) for letter in t])
+    return s == t
+
+
+print(anagram_comprehension('anagram', 'nagaaram'))

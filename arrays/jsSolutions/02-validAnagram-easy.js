@@ -19,10 +19,11 @@ s and t consist of lowercase English letters.
 Follow up: What if the inputs contain Unicode characters ? How would you adapt your solution to such a case?
 */
 
-//using builtins - easy to read
+//simple solution - easy to read
 const validAnagram = (s, t) => {
   if (s.length !== t.length) return false
   let charsCounter = {}
+
   for (let char of s) charsCounter[char] = charsCounter[char] + 1 || 1
 
   for (let char of t) {
@@ -52,4 +53,27 @@ const validAnagrams = (s, t) => {
   return lettersArr.every(el => el === 0)
 }
 
-console.log(validAnagram("nagadram", "anagram"))
+
+//unicode solution
+const validAnagramUnicode = (s, t) => {
+  if (s.length !== t.length) return false
+  let lettersArr = new Array(26).fill(0)
+  s = s.split(',')
+  t = t.split(',')
+
+  for (let i = 0; i < s.length; i++) {
+    let letterIdx = Number(s[i]) - 97
+    lettersArr[letterIdx]++
+  }
+
+  for (let i = 0; i < t.length; i++) {
+    let letterIdx = Number(s[i]) - 97
+    if (lettersArr[letterIdx] === 0) return false
+    lettersArr[letterIdx]--
+  }
+
+  return lettersArr.every(el => el === 0)
+}
+
+console.log(validAnagram("nagaram", "anagram"))
+console.log(validAnagramUnicode('110,97,103,97,114,97,109', '97,110,97,103,97,114,109'))
