@@ -22,12 +22,30 @@ Follow up: What if the inputs contain Unicode characters ? How would you adapt y
 //simple solution - easy to read
 const validAnagram = (s, t) => {
   if (s.length !== t.length) return false
-  let charsCounter = {}
+  let charsMap = new Map()
 
-  for (let char of s) charsCounter[char] = charsCounter[char] + 1 || 1
+  for (let char of s) charsMap.set(char, charsMap.get(char) + 1 || 1)
 
   for (let char of t) {
-    if (charsCounter[char]) charsCounter[char] = charsCounter[char] - 1
+    if (charsMap.get(char)) charsMap.set(char, charsMap.get(char) - 1)
+    else return false
+  }
+
+  return true
+}
+
+const validAnagram2 = (s, t) => {
+  if (s.length !== t.length) return false
+  let charsMap = new Map()
+
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i]
+    charsMap.set(char, charsMap.get(char) + 1 || 1)
+  }
+
+  for (let i = 0; i < t.length; i++) {
+    let char = t[i]
+    if (charsMap.get(char)) charsMap.set(char, charsMap.get(char) - 1)
     else return false
   }
 
@@ -75,5 +93,9 @@ const validAnagramUnicode = (s, t) => {
   return lettersArr.every(el => el === 0)
 }
 
-console.log(validAnagram("nagaram", "anagram"))
-console.log(validAnagramUnicode('110,97,103,97,114,97,109', '97,110,97,103,97,114,109'))
+timer(validAnagram, 'anagram', 'nagaram')
+
+// console.log(validAnagram("nagaram", "anagram"))
+// console.log(validAnagram("nagarapdam", "anagraprmm"))
+// console.log(validAnagram("nappgaram", "anappgram"))
+// console.log(validAnagramUnicode('110,97,103,97,114,97,109', '97,110,97,103,97,114,109'))
