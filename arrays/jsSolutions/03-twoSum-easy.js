@@ -26,7 +26,7 @@ Only one valid answer exists.
 Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 */
 
-//sort input? use pointers
+//sort input & use pointers
 const twoSum = (array, targetSum) => {
   let left = 0
   let right = array.length - 1
@@ -41,7 +41,11 @@ const twoSum = (array, targetSum) => {
   return [left, right]
 }
 
-//cannot sort input? use a hash to track match indices
+// console.log(twoSum([7, 1, 0, 3, 2, 4], 6)) // [2,4]
+// console.log(twoSum([3, 3], 6)) // [0,1]
+// console.log(twoSum([22, 1, 11, 2, 15, 81, 569, 3, 7], 9)) // [1,3]
+
+//if you cannot mutate the input use a hash to track match indices
 const twoSums = (array, targetSum) => {
   let matches = {}
   for (let i = 0; i < array.length; i++) {
@@ -51,6 +55,6 @@ const twoSums = (array, targetSum) => {
   }
 }
 
-console.log(twoSums([7, 1, 0, 3, 2, 4], 6)) //[4,5]
-console.log(twoSums([3, 3], 6)) //[0,1]
-console.log(twoSums([22, 1, 11, 2, 15, 81, 569, 3, 7], 9)) //[3,8]
+// console.log(twoSums([7, 1, 0, 3, 2, 4], 6)) //[4,5]
+// console.log(twoSums([3, 3], 6)) //[0,1]
+// console.log(twoSums([22, 1, 11, 2, 15, 81, 569, 3, 7], 9)) //[3,8]

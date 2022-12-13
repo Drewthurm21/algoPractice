@@ -19,9 +19,18 @@ s and t consist of lowercase English letters.
 Follow up: What if the inputs contain Unicode characters ? How would you adapt your solution to such a case?
 '''
 
-# dictionary counter
+
+def is_anagram(s, t):
+    if len(s) != len(t):
+        return False
+    s = sorted([ord(letter) for letter in s])
+    t = sorted([ord(letter) for letter in t])
+    return s == t
+
+# print(is_anagram('anagram', 'nagaaram'))
 
 
+# dictionary counter solution
 def valid_anagram(s, t):
     if len(s) != len(t):
         return False
@@ -37,7 +46,6 @@ def valid_anagram(s, t):
                 c[letter] = c[letter] - 1
 
     return sum(c.values()) == 0
-
 
 # print((valid_anagram("nagaram", "anagram")))
 
@@ -59,7 +67,6 @@ def valid_anagrams(s, t):
         letters[i] = letters[i] - 1
 
     return sum(letters) == 0
-
 
 # print((valid_anagrams("nagaram", "anagram")))
 
@@ -84,16 +91,4 @@ def valid_anagram_unicode(s, t):
 
     return sum(letters) == 0
 
-
 # print(valid_anagram_unicode('110,97,103,97,114,97,109', '97,110,97,103,97,114,109'))
-
-
-def anagram_comprehension(s, t):
-    if len(s) != len(t):
-        return False
-    s = sorted([ord(letter) for letter in s])
-    t = sorted([ord(letter) for letter in t])
-    return s == t
-
-
-print(anagram_comprehension('anagram', 'nagaaram'))
