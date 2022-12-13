@@ -24,11 +24,10 @@ def valid_anagram(s, t):
     c = {letter: s.count(letter) for letter in s}
     for char in t:
         if char in c.keys():
-            if c[char] == 0:
+            if char not in c or c[char] == 0:
                 return False
-            c[char] = c[char] - 1
-        else:
-            return False
+            else:
+                c[char] = c[char] - 1
 
     return sum(c.values()) == 0
 
@@ -46,7 +45,7 @@ def valid_anagrams(s, t):
             return False
         letters[i] = letters[i] - 1
 
-    return True
+    return sum(letters) == 0
 
 
 print(valid_anagrams('anagram', 'nagaram'))
