@@ -32,6 +32,9 @@ def valid_anagram(s, t):
     return sum(c.values()) == 0
 
 
+print((valid_anagram("nagaram", "anagram")))
+
+
 def valid_anagrams(s, t):
     letters = [0 for i in range(26)]
 
@@ -48,4 +51,25 @@ def valid_anagrams(s, t):
     return sum(letters) == 0
 
 
-print(valid_anagrams('anagram', 'nagaram'))
+print((valid_anagrams("nagaram", "anagram")))
+
+
+def valid_anagram_unicode(s, t):
+    letters = [0 for i in range(26)]
+    sarr = s.split(',')
+    tarr = t.split(',')
+
+    for char in sarr:
+        i = int(char) - 97
+        letters[i] = letters[i] + 1
+
+    for char in tarr:
+        i = int(char) - 97
+        if letters[i] == 0:
+            return False
+        letters[i] = letters[i] - 1
+
+    return sum(letters) == 0
+
+
+print(valid_anagram_unicode('110,97,103,97,114,97,109', '97,110,97,103,97,114,109'))
