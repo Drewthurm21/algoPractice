@@ -1,12 +1,10 @@
 
 
 const timer = (testFunc, ...vals) => {
-  let startTime = Date.now()
+  console.time('benchmark')
   let functionOutput = testFunc(...vals)
-  let endTime = Date.now()
-  let elapsedTime = endTime - startTime
-
-  console.log(functionOutput, startTime, endTime, elapsedTime)
+  console.timeEnd('benchmark')
+  console.log(functionOutput)
 }
 
 

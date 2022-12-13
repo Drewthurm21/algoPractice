@@ -18,6 +18,7 @@ s and t consist of lowercase English letters.
 
 Follow up: What if the inputs contain Unicode characters ? How would you adapt your solution to such a case?
 */
+const { timer } = require('../../utils.js')
 
 //simple solution - easy to read
 const validAnagram = (s, t) => {
@@ -53,7 +54,7 @@ const validAnagram2 = (s, t) => {
 }
 
 //array buckets solution
-const validAnagrams = (s, t) => {
+const validAnagram3 = (s, t) => {
   if (s.length !== t.length) return false
   let lettersArr = new Array(26).fill(0)
 
@@ -71,6 +72,18 @@ const validAnagrams = (s, t) => {
   return lettersArr.every(el => el === 0)
 }
 
+const validAnagram4 = (s, t) => {
+  if (s.length !== t.length) return false
+  let charsCounter = {}
+  for (let char of s) charsCounter[char] = charsCounter[char] + 1 || 1
+
+  for (let char of t) {
+    if (charsCounter[char]) charsCounter[char] = charsCounter[char] - 1
+    else return false
+  }
+
+  return true
+}
 
 //unicode solution
 const validAnagramUnicode = (s, t) => {
@@ -93,7 +106,9 @@ const validAnagramUnicode = (s, t) => {
   return lettersArr.every(el => el === 0)
 }
 
-timer(validAnagram, 'anagram', 'nagaram')
+let longString = Array(50000).fill('a').join()
+
+timer(validAnagram4, longString, longString)
 
 // console.log(validAnagram("nagaram", "anagram"))
 // console.log(validAnagram("nagarapdam", "anagraprmm"))
