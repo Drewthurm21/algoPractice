@@ -20,7 +20,17 @@ Constraints:
 0 <= strs[i].length <= 100
 strs[i] consists of lowercase English letters.
 '''
+from collections import defaultdict
 
 
 def group_anagrams(words):
-  pass
+    groups = defaultdict(list)
+
+    for word in words:
+        key = f'{sorted(([ord(c) for c in word]))}'
+        groups[key].append(word)
+
+    return [w for w in groups.values()]
+
+
+print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))

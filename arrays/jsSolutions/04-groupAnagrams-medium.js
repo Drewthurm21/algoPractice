@@ -22,5 +22,28 @@ strs[i] consists of lowercase English letters.
 */
 
 const groupAnagrams = (words) => {
+  let groups = {}
 
+  for (let word of words) {
+    let key = word.split('').sort().join()
+    if (groups[key]) groups[key] = [...groups[key], word]
+    else groups[key] = [word]
+  }
+
+  return Object.values(groups)
 }
+
+const groupAnagrams2 = (words) => {
+  let groups = new Map()
+
+  for (let word of words) {
+    let key = `${word.split('').sort()}`
+    if (groups.get(key)) groups.set(key, [...groups.get(key), word])
+    else groups.set(key, [word])
+  }
+
+  return [...groups.values()]
+}
+
+
+console.log(groupAnagrams2(["eat", "tea", "tan", "ate", "nat", "bat"]))
