@@ -22,7 +22,7 @@ from collections import Counter
 
 
 def top_k_frequent_elements(nums, k):
-    pass
+    return [num for (num, _) in Counter(nums).most_common(k)]
 
 
 print(top_k_frequent_elements([1, 1, 1, 1, 2, 2, 2, 3, 3], 2))
