@@ -21,6 +21,7 @@ Follow up: What if the inputs contain Unicode characters ? How would you adapt y
 const { timer } = require('../../utils.js')
 
 //simple solution - easy to read
+//uses for of loop & Map object
 const validAnagram = (s, t) => {
   if (s.length !== t.length) return false
   let charsMap = new Map()
@@ -35,6 +36,7 @@ const validAnagram = (s, t) => {
   return true
 }
 
+//uses for loop & Map object
 const validAnagram2 = (s, t) => {
   if (s.length !== t.length) return false
   let charsMap = new Map()
@@ -72,6 +74,7 @@ const validAnagram3 = (s, t) => {
   return lettersArr.every(el => el === 0)
 }
 
+
 const validAnagram4 = (s, t) => {
   if (s.length !== t.length) return false
   let charsCounter = {}
@@ -108,7 +111,18 @@ const validAnagramUnicode = (s, t) => {
 
 let longString = Array(50000).fill('a').join()
 
-timer(validAnagram4, longString, longString)
+console.log('running validAnagram2')
+timer(validAnagram4, 10, longString, longString)
+console.log(`\n\n\n`)
+console.log('running validAnagram3')
+timer(validAnagram4, 10, longString, longString)
+console.log(`\n\n\n`)
+console.log('running validAnagram4')
+timer(validAnagram4, 10, longString, longString)
+console.log(`\n\n\n`)
+console.log('running validAnagram')
+timer(validAnagram4, 10, longString, longString)
+
 
 // console.log(validAnagram("nagaram", "anagram"))
 // console.log(validAnagram("nagarapdam", "anagraprmm"))

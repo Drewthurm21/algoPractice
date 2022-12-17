@@ -18,12 +18,35 @@ It is guaranteed that the answer is unique.
 Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 '''
 
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 def top_k_frequent_elements(nums, k):
     return [num for (num, _) in Counter(nums).most_common(k)]
 
 
-print(top_k_frequent_elements([1, 1, 1, 1, 2, 2, 2, 3, 3], 2))
-print(top_k_frequent_elements([4, 1, -1, 2, -1, 2, 3], 2))
+def return_zero():
+    return 0
+
+
+def top_k_frequent_els(nums, k):
+    frequencies = {}
+    result = []
+    
+    for num in nums:
+        if num in frequencies:
+            frequencies[num] = frequencies[num] + 1
+        else:
+            frequencies[num] = 1
+
+    frequencies = sorted(
+        [(v, k) for k, v in frequencies.items()], reverse=True)
+
+    for i in range(0, k):
+        result.append(frequencies[i][1])
+
+    return result
+
+
+print(top_k_frequent_els([1, 1, 1, 1, 2, 2, 2, 3, 3], 2))
+print(top_k_frequent_els([4, 1, -1, 2, -1, 2, 3], 2))
