@@ -40,8 +40,27 @@ const productOfArrayExceptSelf = (nums) => {
   return result
 }
 
+// easier to read
+const productExceptSelf = (nums) => {
+  let result = []
+
+  for (const excludedIndex in nums) {
+    let product = 1
+
+    for (const currentIndex in nums) {
+      if (currentIndex === excludedIndex) continue;
+      else product *= nums[currentIndex]
+    }
+
+    result.push(product)
+  }
+
+  return result
+}
 
 
+// console.log(productOfArrayExceptSelf([1, 2, 3, 4]))
+// console.log(productOfArrayExceptSelf([-1, 1, 0, -3, 3]))
 
-console.log(productOfArrayExceptSelf([1, 2, 3, 4]))
-console.log(productOfArrayExceptSelf([-1, 1, 0, -3, 3]))
+console.log(productExceptSelf([1, 2, 3, 4]))
+console.log(productExceptSelf([-1, 1, 0, -3, 3]))
