@@ -52,7 +52,7 @@ const productOfArrayExceptSelf = (nums) => {
 */
 
 //refactor using arrays - O(2n) space
-const prodExceptSelf = (nums) => {
+const productArrayExceptSelf = (nums) => {
   let n = nums.length
   let prev = new Array(n)
   let post = new Array(n)
@@ -71,6 +71,7 @@ const prodExceptSelf = (nums) => {
     post[i] = nums[i + 1] * post[i + 1]
   }
 
+  //set each idx of return array to prev[idx] * post[idx]
   for (let i = 0; i < nums.length; i++) {
     prod[i] = post[i] * prev[i]
   }
@@ -78,28 +79,44 @@ const prodExceptSelf = (nums) => {
   return prod
 }
 
-// console.log(prodExceptSelf([1, 2, 3, 4]))
-
+// console.log(productArrayExceptSelf([1, 2, 3, 4]))
 
 //refactor using one array - O(n) space
-const prodXeptSelf = (nums) => {
+const productExceptSelf = function (nums) {
+  const res = [];
+  let product = 1;
+
+  // iterate over nums
+  // use prod as a product accumulator (prod *= nums[i])
+  // push current prefix product into res
+  for (let i = 0; i < nums.length; i++) {
+    res.push(product);
+    product *= nums[i];
+  }
+
+
+  //reset prod & iterate backwards over nums
+  //use prod as a product accumulator
+  //prod should hold postfix from end to start+1  
+  product = 1;
+  for (let j = nums.length - 1; j >= 0; j--) {
+    res[j] *= product;
+    product *= nums[j];
+  }
+
+  return res;
+};
+
+//more readable
+const prodExceptSelf = (nums) => {
   const res = [];
   let prod = 1;
 
-  // iterate over nums
-  // use prod as a product accumulator
-  // push current prefix product into res
   for (let k of nums) res.push(prod *= k);
-
-  //iterate backwards over nums
-  //use prod as a product accumulator, multiplying by nums[i]
-  //prod should hold postfix from end to start+1
   for (let prod = 1, i = nums.length - 1; i >= 0; prod *= nums[i--]) {
-    //assign res[i] to current product * trailing res index
-    //use accumulated prod for last index (res[0]) 
     res[i] = i ? prod * res[i - 1] : prod;
   }
 
   return res;
 }
-console.log(prodXeptSelf([1, 2, 3, 4]))
+console.log(prodExceptSelf([1, 2, 3, 4]))
