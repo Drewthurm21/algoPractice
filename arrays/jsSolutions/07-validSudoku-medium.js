@@ -78,7 +78,8 @@ const validSudoku = (board) => {
     cols[idx] = new Set()
   }
 
-
+  //iterate over the board and check if each num has been seen
+  //in this row or col already, using the hash created above
   for (let row = 0; row < board.length; row++) {
     for (let col = 0; col < board.length; col++) {
       let currentNumber = board[row][col]
