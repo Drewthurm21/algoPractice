@@ -16,7 +16,6 @@ def valid_palindrom(s):
     while left <= right:
         if alpha_s[left] != alpha_s[right]:
             return False
-
         left += 1
         right -= 1
 
