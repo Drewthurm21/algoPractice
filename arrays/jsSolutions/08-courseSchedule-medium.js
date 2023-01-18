@@ -32,7 +32,6 @@ const courseSchedule = (courses) => {
     else prereqs[course] = [prereq]
   }
 
-
   for (const course in prereqs) {
     let visited = new Set()
     let queue = [course]
