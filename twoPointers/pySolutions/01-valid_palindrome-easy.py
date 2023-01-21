@@ -9,6 +9,7 @@ import re
 
 
 def valid_palindrom(s):
+    #remove special chars, spaces, and punctuation
     alpha_s = re.sub(r'[^A-Za-z0-9]+', '', s).lower()
     left = 0
     right = len(alpha_s) - 1

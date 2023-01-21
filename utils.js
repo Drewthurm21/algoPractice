@@ -11,17 +11,22 @@ const timer = (testFunc, numTimes, ...vals) => {
 }
 
 
-const classSorter = (list) => {
-  const teams = { 0: [], 1: [], 2: [], 3: [], 4: [] }
-  for (let i in list) teams[i % 5].push(list[i])
-  console.log(teams)
+const classRandomizer = (instructors, students) => {
+  const teams = {}
+  for (let i of instructors) teams[i] = []
+  for (let j in students) teams[instructors[j % instructors.length]].push(students[j])
+  return teams
 }
 
-const students = [
-  'student names here'
+const instructors = [
+  'instructor', 'names', 'here',
 ]
 
-classSorter(students)
+const students = [
+  'student', 'names', 'here',
+]
+
+classRandomizer(students, instructors)
 
 module.exports = {
   timer
