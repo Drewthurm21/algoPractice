@@ -21,11 +21,7 @@ Follow up: What if the inputs contain Unicode characters ? How would you adapt y
 
 
 def is_anagram(s, t):
-    if len(s) != len(t):
-        return False
-    s = sorted([ord(letter) for letter in s])
-    t = sorted([ord(letter) for letter in t])
-    return s == t
+    return sorted([l for l in s]) == sorted([l for l in t])
 
 # print(is_anagram('anagram', 'nagaaram'))
 

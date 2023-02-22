@@ -41,6 +41,7 @@ since there are two 8's in the first column, it is invalid.
 Since there are two 8's in the top left 3x3 sub-box, it is invalid.
 '''
 
+
 def isValid(board):
     seen = set()
     for x in board:
@@ -48,6 +49,7 @@ def isValid(board):
             return False
         seen.add(x)
     return True
+
 
 def isValidSudoku(board):
     for row in board:

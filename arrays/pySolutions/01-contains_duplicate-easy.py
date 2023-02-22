@@ -19,13 +19,23 @@ Constraints:
 '''
 
 
+def containsDupes(nums):
+    seen = {}
+    for num in nums:
+        if seen.get(num):
+            return True
+        seen[num] = True
+    return False
+
+
+
 def containsDuplicate(nums):
     return len(set(nums)) != len(nums)
 
 
-print(containsDuplicate([1, 2, 3, 1]))  # t
-print(containsDuplicate([1, 2, 3, 4]))  # f
-print(containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))  # t
-print(containsDuplicate([1, 2, 5, 4343, 7, 8, 55, 87, 3]))  # f
-print(containsDuplicate([0]))  # f
-print(containsDuplicate([]))  # f
+print(containsDupes([1, 2, 3, 1]))  # t
+print(containsDupes([1, 2, 3, 4]))  # f
+print(containsDupes([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))  # t
+print(containsDupes([1, 2, 5, 4343, 7, 8, 55, 87, 3]))  # f
+print(containsDupes([0]))  # f
+print(containsDupes([]))  # f

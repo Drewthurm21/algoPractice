@@ -31,9 +31,10 @@ const containsDuplicate = (nums) => {
   return false
 }
 
-console.log(containsDuplicate([1, 2, 3, 1])) //t
-console.log(containsDuplicate([1, 2, 3, 4])) //f
-console.log(containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])) //t
-console.log(containsDuplicate([1, 2, 5, 4343, 7, 8, 55, 87, 3])) //f
-console.log(containsDuplicate([0])) //f
-console.log(containsDuplicate([])) //f
+
+console.log(containsDupes([1, 2, 3, 1])) //t
+console.log(containsDupes([1, 2, 3, 4])) //f
+console.log(containsDupes([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])) //t
+console.log(containsDupes([1, 2, 5, 4343, 7, 8, 55, 87, 3])) //f
+console.log(containsDupes([0])) //f
+console.log(containsDupes([])) //f

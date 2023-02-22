@@ -25,12 +25,10 @@ from collections import defaultdict
 
 def group_anagrams(words):
     groups = defaultdict(list)
-
     for word in words:
-        key = f'{sorted(([ord(c) for c in word]))}'
+        key = f'{sorted([c for c in word])}'
         groups[key].append(word)
-
-    return [w for w in groups.values()]
+    return [*groups.values()]
 
 
 print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))

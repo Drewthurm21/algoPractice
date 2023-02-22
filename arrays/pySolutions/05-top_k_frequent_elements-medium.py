@@ -18,21 +18,17 @@ It is guaranteed that the answer is unique.
 Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 '''
 
-from collections import Counter, defaultdict
+from collections import Counter
 
 
 def top_k_frequent_elements(nums, k):
     return [num for (num, _) in Counter(nums).most_common(k)]
 
 
-def return_zero():
-    return 0
-
-
 def top_k_frequent_els(nums, k):
     frequencies = {}
     result = []
-    
+
     for num in nums:
         if num in frequencies:
             frequencies[num] = frequencies[num] + 1
