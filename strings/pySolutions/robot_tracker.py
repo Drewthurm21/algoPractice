@@ -21,7 +21,7 @@ def robot_tracker(path):
     }
 
     for instruction in path:
-        direction, distance = tuple(instruction.split(' '))
+        direction, distance = instruction.split(' ')
         loc[direction] = int(distance)
 
     return [loc['left'] - loc['right'], loc['up'] - loc['down']]
