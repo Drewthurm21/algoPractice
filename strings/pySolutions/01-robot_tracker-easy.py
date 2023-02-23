@@ -13,7 +13,7 @@ should return [-20, 40].
 
 
 def robot_tracker(path):
-    loc = {
+    location = {
         'up': 0,
         'down': 0,
         'left': 0,
@@ -22,9 +22,9 @@ def robot_tracker(path):
 
     for instruction in path:
         direction, distance = instruction.split(' ')
-        loc[direction] = int(distance)
+        location[direction] = int(distance)
 
-    return [loc['left'] - loc['right'], loc['up'] - loc['down']]
+    return [location['left'] - location['right'], location['up'] - location['down']]
 
 
 print(robot_tracker(["right 10", "up 50", "left 30", "down 10"]))
