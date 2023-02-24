@@ -15,7 +15,7 @@ const threeSum = (nums) => {
     let right = len
 
     while (left < right) {
-      let set = [nums[i], nums[left], nums[right]].sort((a, b) => a - b)
+      let set = [nums[i], nums[left], nums[right]]
       let sum = set.reduce((acc, n) => acc + n, 0)
       if (sum === 0) {
         let str = `${set}`
