@@ -12,19 +12,18 @@ should return [-20, 40].
 */
 
 const robotTracker = (path) => {
-  let location = {
-    'up': 0,
-    'down': 0,
-    'left': 0,
-    'right': 0
+  let l = { 'u': 0, 'd': 0, 'l': 0, 'r': 0 }
+
+  for (const instruction of path) {
+    let [dir, dist] = instruction.split(' ')
+    l[dir[0]] = +dist
   }
 
-  for (let i = 0; i < path.length; i++) {
-    let [direction, distance] = path[i].split(' ')
-    location[direction] = +distance
-  }
+  let res = [Math.abs(l['l'] - l['r']), Math.abs(l['u'] - l['d'])]
+  l['l'] > l['r'] ? res[0] = -res[0] : null
+  l['d'] > l['u'] ? res[1] = -res[1] : null
 
-  return [location['left'] - location['right'], location['up'] - location['down']]
+  return res
 }
 
-console.log(robotTracker(["right 10", "up 50", "left 30", "down 10"]))
+console.log(robotTracker(["right 10", "up 50", "left 30", "down 100"]))
