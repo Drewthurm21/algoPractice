@@ -6,7 +6,7 @@ Notice that the solution set must not contain duplicate triplets.
 */
 
 const threeSum = (nums) => {
-  nums.sort()
+  nums.sort((a, b) => a - b)
   let res = {}
   let len = nums.length - 1
 
@@ -15,10 +15,12 @@ const threeSum = (nums) => {
     let right = len
 
     while (left < right) {
-      let str = `${nums[i]}, ${nums[left]}, ${nums[right]}`
-      let sum = nums[i] + nums[left] + nums[right]
-
-      if (sum === 0 && !(str in res)) res[str] = [nums[i], nums[left], nums[right]]
+      let set = [nums[i], nums[left], nums[right]].sort((a, b) => a - b)
+      let sum = set.reduce((acc, n) => acc + n, 0)
+      if (sum === 0) {
+        let str = `${set}`
+        if (!(str in res)) res[str] = set
+      }
       if (sum <= 0) left++
       else right--
     }
