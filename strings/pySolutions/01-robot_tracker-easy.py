@@ -13,18 +13,16 @@ should return [-20, 40].
 
 
 def robot_tracker(path):
-    location = {
-        'up': 0,
-        'down': 0,
-        'left': 0,
-        'right': 0
-    }
-
+    l = {'u': 0, 'd': 0, 'l': 0, 'r': 0}
     for instruction in path:
-        direction, distance = instruction.split(' ')
-        location[direction] = int(distance)
+        dir, dist = instruction.split(' ')
+        l[dir[0]] = int(dist)
 
-    return [location['left'] - location['right'], location['up'] - location['down']]
+    res = [abs(l['l'] - l['r']), abs(l['u'] - l['d'])]
+    x_axis = -res[0] if l['l'] > l['r'] else res[0]
+    y_axis = -res[1] if l['d'] > l['u'] else res[1]
+
+    return [x_axis, y_axis]
 
 
-print(robot_tracker(["right 10", "up 50", "left 30", "down 10"]))
+print(robot_tracker(["right 100", "up 50", "left 60", "down 100"]))
