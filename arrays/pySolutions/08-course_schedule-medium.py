@@ -22,29 +22,47 @@ Explanation: There are a total of 2 courses to take.
 To take course 1 you should have finished course 0, and to take course 0 
 you should also have finished course 1. So it is impossible.
 '''
-from collections import defaultdict
-
-#not finished
 
 
-def course_schedule(schedule):
-    prereqs = defaultdict(list)
+def course_schedule(numCourses, schedule):
+    # create dict to hold adjacency list
+    preMap = {i: [] for i in range(numCourses)}
 
-    for [course, prereq] in schedule:
-        prereqs[course].append(prereq)
+    # map prereq adjacency list
+    for crs, pre in schedule:
+        preMap[crs].append(pre)
 
-    for course in prereqs:
-        seen_courses = set()
-        queue = [course]
+    # dfs the prereqs
+    def dfs(crs):
+        visiting = set()
+        # if the course is in visiting there is a cycle
+        if crs in visiting:
+            return False
+        # if the course has an empty prereq list then:
+            # 1. it has no prereqs.
+            # 2. it has already been checked.
+        if preMap[crs] == []:
+            return True
 
-        while len(queue):
-            if course in seen_courses:
+        visiting.add(crs)
+        # check the adjacency list for prereqs to this course
+        for pre in preMap[crs]:
+            # dfs for each of this course's prereqs to check their prereqs
+            if not dfs(pre):
                 return False
-            seen_courses.add(course)
-            if prereqs[course]:
-                queue.append(*prereqs[course])
 
+        # remove this course from visited
+        # clear its prereqs as they have been confirmed valid
+        visiting.remove(crs)
+        preMap[crs] = []
+        return True
+
+    # check that each course can be completed
+    for c in range(numCourses):
+        if not dfs(c):
+            return False
     return True
 
 
-course_schedule([[1, 2], [0, 1], [2, 3]])
+print(course_schedule(12, [[9, 1], [1, 0], [2, 0], [7, 8], [3, 1], [
+    8, 3], [4, 2], [7, 3], [5, 3], [7, 9], [6, 4]]))
