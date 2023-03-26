@@ -31,6 +31,7 @@ const largestContainer = (heights) => {
     if (maxR > maxL) L++
     else R--
   }
+
   return maxArea
 };
 
