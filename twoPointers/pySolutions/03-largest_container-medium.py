@@ -22,7 +22,8 @@ Output: 1
 
 
 def largest_container(heights):
-    maxArea, maxL, maxR, left, right = 0, 0, 0, 0, len(heights)-1
+    maxArea = maxL = maxR = left = 0
+    right = len(heights)-1
     while (left < right):
         maxL = max(maxL, heights[left])
         maxR = max(maxR, heights[right])
