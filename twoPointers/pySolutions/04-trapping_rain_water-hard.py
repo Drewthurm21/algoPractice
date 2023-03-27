@@ -14,3 +14,26 @@ Example 2:
 Input: height = [4,2,0,3,2,5]
 Output: 9
 '''
+
+
+def trap_rain_water(heights):
+    maxL = maxR = l = minH = water = 0
+    r = len(heights) - 1
+
+    while l <= r:
+        maxL = max(maxL, heights[l])
+        maxR = max(maxR, heights[r])
+        minH = min(maxL, maxR)
+
+        if maxL <= maxR:
+            water += minH - heights[l] if heights[l] < minH else 0
+            l += 1
+        else:
+            water += minH - heights[r] if heights[r] < minH else 0
+            r -= 1
+
+    return water
+
+
+print(trap_rain_water([4, 2, 0, 3, 2, 5]))  # 9
+print(trap_rain_water([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))  # 6

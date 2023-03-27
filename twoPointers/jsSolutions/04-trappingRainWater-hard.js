@@ -21,14 +21,14 @@ const trapRainWater = (heights) => {
   let right = heights.length - 1
 
   while (left <= right) {
+    maxL = Math.max(maxL, heights[left])
+    maxR = Math.max(maxR, heights[right])
+    min = Math.min(maxL, maxR)
+
     if (maxL <= maxR) {
-      maxL = Math.max(maxL, heights[left])
-      min = Math.min(maxL, maxR)
       if (min - heights[left] > 0) totalWater += min - heights[left]
       left++
     } else {
-      maxR = Math.max(maxR, heights[right])
-      min = Math.min(maxL, maxR)
       if (min - heights[right] > 0) totalWater += min - heights[right]
       right--
     }
