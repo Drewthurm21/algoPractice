@@ -19,3 +19,20 @@ Example 2:
 Input: height = [1,1]
 Output: 1
 '''
+
+
+def largest_container(heights):
+    maxArea = maxL = maxR = left = 0
+    right = len(heights)-1
+    while (left < right):
+        maxL = max(maxL, heights[left])
+        maxR = max(maxR, heights[right])
+        maxArea = max((right - left) * min(maxL, maxR), maxArea)
+        if maxL > maxR:
+            right -= 1
+        else:
+            left += 1
+    return maxArea
+
+
+print(largest_container([1, 8, 6, 2, 5, 4, 8, 3, 7]))
