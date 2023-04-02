@@ -40,20 +40,18 @@ first idea -> does not account for prev letters after a reset
 */
 
 const longestSubstring = (s) => {
-  let chars = new Set(), max = 0;
+  let seenChars = new Set(), max = 0;
+  let l = 0, r = 0;
 
-  let i = 0, idx = 0;
-  while (idx < s.length) {
-    let char = char === ' ' ? 'space' : s[i]
-
-    if (chars.has(char)) {
-      max = Math.max(max, chars.size)
-      chars = new Set()
-      i = idx
+  while (r < s.length) {
+    while (seenChars.has(s[r])) {
+      seenChars.delete(s[l])
+      l++
     }
 
-    chars.add(char)
-    i++
+    seenChars.add(s[r])
+    max = Math.max(max, seenChars.size)
+    r++
   }
 
   return max
@@ -61,8 +59,10 @@ const longestSubstring = (s) => {
 
 /*
 s = "dvdf"
-char = b
-chars = (b, )
+char = 
+chars = 
 
 max = 3
 */
+
+console.log(longestSubstring('dvdf'))
