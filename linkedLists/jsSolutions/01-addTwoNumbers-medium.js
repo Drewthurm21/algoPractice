@@ -57,7 +57,7 @@ create a head node and initialize the value -1
 create a carry variable and initialize to zero
 
 start iterating through our linked lists
-  -on each iteration 
+  -on each iteration
     -check if l1 or l2 are null
       -if null set val to zero, next to null
     -add l1.val + l2.val + carry
@@ -67,7 +67,7 @@ start iterating through our linked lists
         -set carry to 1
         -move l1 and l2 pointers
         -continue
-        -else 
+      -else
         -make a newNode and set val: sum, next: null
         -set dummyNode to newNode
         -set carry to 0
@@ -101,7 +101,7 @@ const addTwoNumbers = (l1, l2) => {
 }
 
 
-// printList(addTwoNumbers(l1, l2)) //708
+printList(addTwoNumbers(l1, l2)) //708
 // printList(addTwoNumbers(l3, l4)) //89990001
 // printList(addTwoNumbers(l5, l6)) //0
 // printList(addTwoNumbers(l7, l8)) //70401
