@@ -1,4 +1,4 @@
-/*
+'''
 Given a string s, return the length of the longest substring without repeating characters.
 
 Example 1:
@@ -21,33 +21,18 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 Constraints:
 0 <= s.length <= 5 * 104
 s consists of English letters, digits, symbols and spaces.
-*/
+'''
 
 
-const longestSubstring = (s) => {
-  let seenChars = new Set(), max = 0;
-  let l = 0, r = 0;
+def longest_substring(s):
+    charSet = set()
+    l = 0
+    res = 0
 
-  while (r < s.length) {
-    while (seenChars.has(s[r])) {
-      seenChars.delete(s[l])
-      l++
-    }
-
-    seenChars.add(s[r])
-    max = Math.max(max, seenChars.size)
-    r++
-  }
-
-  return max
-};
-
-/*
-s = "dvdf"
-char = 
-chars = 
-
-max = 3
-*/
-
-console.log(longestSubstring('dvdf'))
+    for r in range(len(s)):
+        while s[r] in charSet:
+            charSet.remove(s[l])
+            l += 1
+        charSet.add(s[r])
+        res = max(res, r - l + 1)
+    return res
