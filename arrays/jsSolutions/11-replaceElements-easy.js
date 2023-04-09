@@ -1,4 +1,4 @@
-'''
+/*
 Given an array arr, replace every element in that array with the greatest element among 
 the elements to its right, and replace the last element with -1.
 
@@ -24,26 +24,20 @@ Constraints:
 
 1 <= arr.length <= 104
 1 <= arr[i] <= 105
-'''
-
-'''
-    create variables - temp, current_max
-      initialize them to -1
-    iterate backwards through the given array
-      set temp to arr[i]
-      set arr[i] to current_max
-      set current_max to max(current_max, nums[i])
-    return reversed result array
-'''
+*/
 
 
-def replace_elements(nums):
-    temp = current_max = -1
-    for i in range(len(nums)-1, -1, -1):
-        temp = nums[i]
-        nums[i] = current_max
-        current_max = max(current_max, temp)
-    return nums
+const replaceElements = (nums) => {
+  let curMax = -1, temp = 0;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    temp = nums[i]
+    res.push(curMax)
+    curMax = Math.max(curMax, nums[i])
+  }
+
+  return res.reverse()
+};
 
 
-print(replace_elements([17, 18, 5, 4, 6, 1]))
+console.log(replaceElements([17, 18, 5, 4, 6, 1]))
