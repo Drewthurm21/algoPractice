@@ -34,13 +34,20 @@ Could you do it in-place with O(1) extra space?
 '''
 
 '''
+if k < length of array, k = k % length of array
+if k == length of array, return array
 1. reverse the entire array
 2. reverse the first k elements
 3. reverse the remaining elements
 '''
 
 def rotate(nums, k):
-  k %= len(nums)  
+  L = len(nums)
+  if k == L:
+    return nums
+  if k < L:
+    k %= L  
+  
   nums.reverse()
   nums[:k] = reversed(nums[:k])
   nums[k:] = reversed(nums[k:])
