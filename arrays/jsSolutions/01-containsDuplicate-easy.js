@@ -18,6 +18,14 @@ Constraints:
 -109 <= nums[i] <= 109
 */
 
+/*
+  The plan:
+  1. create a set to keep track of the numbers we've seen so far
+  2. iterate over the array
+    2a. if we find a number that's already in the set, return true
+    2b. if we don't find a number that's already in the set, return false
+*/
+
 const containsDuplicate = (nums) => {
   if (nums.length < 2) return false
 

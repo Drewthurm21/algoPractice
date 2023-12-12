@@ -23,6 +23,17 @@ To take course 1 you should have finished course 0, and to take course 0
 you should also have finished course 1. So it is impossible.
 */
 
+/* 
+
+  The plan:
+  1. create a map of courses to prereqs - this will make it easier to check if the prereqs have been taken
+  2. iterate over the courses to check prerequisites
+    2a. if we find a course with no prereqs - continue
+    2b. if we find a course with prereqs, check if the prereqs have been taken
+
+
+*/
+
 const courseSchedule = (courses) => {
 
   const prereqs = {}

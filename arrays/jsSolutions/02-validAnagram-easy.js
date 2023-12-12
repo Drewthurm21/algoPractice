@@ -55,7 +55,43 @@ const validAnagram2 = (s, t) => {
   return true
 }
 
-//array buckets solution
+
+//object solution
+/*
+  The plan:
+  1. create an object to keep track of the letters we've seen so far
+  2. iterate over s and increment the count of the letter in the object
+  3. iterate over t and decrement the count of the letter in the object
+  4. iterate over the object and return false if any of the counts are not 0
+  5. return true
+*/
+const validAnagram4 = (s, t) => {
+  if (s.length !== t.length) return false
+  let charsCounter = {}
+  for (let char of s) charsCounter[char] = charsCounter[char] + 1 || 1
+
+  for (let char of t) {
+    if (charsCounter[char]) charsCounter[char] = charsCounter[char] - 1
+    else return false
+  }
+
+  return true
+}
+
+//array buckets solutions
+/*
+  The plan:
+  We know that there are 26 letters in the alphabet, so we can create an array of 26 buckets
+  to keep track of the letters we've seen so far. This is more performant than using a Map object 
+  because we don't have to worry about hashing the keys.
+
+  1. create an array of 26 buckets
+  2. iterate over s and increment the bucket at the index of the charCode
+  3. iterate over t and decrement the bucket at the index of the charCode
+  4. iterate over the buckets and return false if any of the buckets are not 0
+  5. return true
+*/
+
 const validAnagram3 = (s, t) => {
   if (s.length !== t.length) return false
   let lettersArr = new Array(26).fill(0)
@@ -72,20 +108,6 @@ const validAnagram3 = (s, t) => {
   }
 
   return lettersArr.every(el => el === 0)
-}
-
-
-const validAnagram4 = (s, t) => {
-  if (s.length !== t.length) return false
-  let charsCounter = {}
-  for (let char of s) charsCounter[char] = charsCounter[char] + 1 || 1
-
-  for (let char of t) {
-    if (charsCounter[char]) charsCounter[char] = charsCounter[char] - 1
-    else return false
-  }
-
-  return true
 }
 
 //unicode solution

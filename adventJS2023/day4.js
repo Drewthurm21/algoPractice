@@ -49,7 +49,7 @@ function decode(message) {
 
 // 2. move l forward, pushing letters into 'start', until we find an opening parenthesis
 //    a. if we find an opening parenthesis, set reverse = true
-//    b. start moving j backwards, shifting letters into 'end', until we find a closing parenthesis
+//    b. start moving j backwards, pushing letters into 'end', until we find a closing parenthesis
 //    c. when we find a closing parenthesis, set reverse = false
 //    d. push letters from 'start' into the message
 //    
@@ -57,3 +57,4 @@ function decode(message) {
 // 3. while reverse === true and l < r 
 //    a. push letters from 'end' into the message
 
+//  san(cat)laus
