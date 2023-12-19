@@ -24,37 +24,60 @@ There should not be any parentheses left in the final message.
 The maximum nesting level is 2.
 */
 
-function decode(message) {
+/*
+  recursive approach
 
+  base case:  there are no parens.
+
+  recursive case:
+    find innermost opening paren
+    from there, iterate to the next closing paren
+
+  recursive step:
+    reverse that portion of the string, omitting the parens
+
+  call the function again
+*/
+
+function decodeRecurse(message) {
+  let l = message.lastIndexOf("(")
+  if (l === -1) return message
+  let r = message.indexOf(")", l)
+
+  message =
+    message.slice(0, l) +
+    message.slice(l + 1, r).split("").reverse().join("") +
+    message.slice(r + 1)
+
+  return decode(message)
 }
 
 
-//stack approach
-// 1. setup a stack
-// 2. iterate over the message
-// 3. if we find an opening parenthesis - remove / skip it
-//    a1. push letters into the stack until we find a closing parenthesis
-//    a2. when we find a closing parenthesis, pop the letters from the stack and add them to the message
+function decodeWhile(message) {
+  let i;
+  while ((i = message.lastIndexOf("(")) + 1) {
+    const j = message.indexOf(")", i);
+    if (j + 1)
+      message =
+        message.slice(0, i) +
+        message.slice(i + 1, j).split("").reverse().join("") +
+        message.slice(j + 1);
+  }
+  return message;
+}
 
-//    b1. if we find a second opening perenthesis before a closing perenthesis, store the letters until we find a closing parenthesis
-//    b2. when we find a closing parenthesis, begin adding letters to the stack again until we find a closing parenthesis
-//    b3. when we find a closing parenthesis, pop the letters from the stack and add them to the message
 
-//two pointers approach
-// 1. set up proper variables
-//    a. l = 0
-//    b. r = message.length - 1
-//    e. reverse = false
-//    f. message = [] (len === message.length)
 
-// 2. move l forward, pushing letters into 'start', until we find an opening parenthesis
-//    a. if we find an opening parenthesis, set reverse = true
-//    b. start moving j backwards, pushing letters into 'end', until we find a closing parenthesis
-//    c. when we find a closing parenthesis, set reverse = false
-//    d. push letters from 'start' into the message
-//    
 
-// 3. while reverse === true and l < r 
-//    a. push letters from 'end' into the message
+let a = decodeRecurse('hola (odnum)')
+console.log(a) // hola mundo
 
-//  san(cat)laus
+let b = decodeRecurse('(olleh) (dlrow)!')
+console.log(b) // hello world!
+let d = decodeRecurse('hello (row)ld')
+console.log(d) // hello world
+
+let c = decodeRecurse('sa(u(cla)atn)s')
+console.log(c) // santaclaus
+
+a = decodeWhile()
