@@ -41,5 +41,6 @@ function maxDistance(movements) {
     else k++;
   }
 
-  return Math.max(l - r, r - l) + k
+  //
+  return Math.max(l, r) + k
 }
