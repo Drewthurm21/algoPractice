@@ -39,6 +39,14 @@ const containsDuplicate = (nums) => {
   return false
 }
 
+const containsDupes = (nums) => {
+  if (nums.length < 2) return false
+
+  let seenNumbers = new Set(nums)
+
+  return seenNumbers.size < nums.length
+}
+
 
 console.log(containsDupes([1, 2, 3, 1])) //t
 console.log(containsDupes([1, 2, 3, 4])) //f
